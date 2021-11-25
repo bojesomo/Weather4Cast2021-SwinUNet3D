@@ -24,18 +24,23 @@ This resipository depends on the following packages availability
 ```
 unzip folder.zip
 cd folder
-conda create --name swinencoder_env python=3.6
+conda create --name swinunet3d_env python=3.6
 conda activate swinunet3d_env
 conda install pytorch=1.9.0 cudatoolkit=10.2 -c pytorch
 pip install -r requirements.txt
 ```
-<!--
 ## Usage
-- a.1)train from scratch (together with inference predictions)
+- a.1)train from scratch (together with inference predictions) SwinUNet3d-1
     ```
-    python Traffic4Cast2021/main1.py --nodes 1 --gpus 4 --precision 16 --batch-size 5 --epochs 100 --mlp_ratio 1 --stages 4 --patch_size 4 --dropout 0.0 --start_filters 192 --sampling-step 1 --decode_depth 1 --use_neck --lr 1e-4 --optimizer lamb --merge_type both --mix_features --city_category TEMPORAL --memory_efficient
+    python ieee_bd/main2.py --nodes 1 --gpus 4 --blk_type swin2unet3d --stages 4 --patch_size 2 --sf 160 --nb_layers 6  --use_neck --use_all_region --lr 1e-4 --optimizer adam --scheduler plateau --merge_type both  --mlp_ratio 2 --decode_depth 2 --precision 32 --epoch 100 --batch-size 4 --augment_data  --constant_dim --workers 12 --get_prediction --use_static --use_all_products
     ```
-- a.2) fine tune a model from a checkpoint
+ 
+ - a.2)train from scratch. SwinUNet3d-2
+    ```
+    python ieee_bd/main.py --nodes 1 --gpus 4 --blk_type swin2unet3d --stages 4 --patch_size 2 --sf 128 --nb_layers 4  --use_neck --use_all_region --lr 1e-4 --optimizer adam --scheduler plateau --merge_type both  --mlp_ratio 2 --decode_depth 2 --precision 32 --epoch 100 --batch-size 4 --augment_data  --constant_dim --workers 12 --use_static --use_all_products
+    ```
+    
+- a.3) fine tune a model from a checkpoint
     ```
     python main.py --gpus 1 --city_category TEMPORAL --mode train --name TEMPORAL_real_swinunet3d_141848694 --time-code 20210913T135845 --initial-epoch 36```
 
@@ -56,5 +61,6 @@ python create_submission.py --name TEMPORAL_real_swinunet3d_141848694 --time-cod
 ```
 
 ## Accessing the trained checkpoint
-Our trained model can be downloaded from https://drive.google.com/file/d/10zM-oiEjRD1rDlDw1bnx06Dl8Z3K3tNQ/view?usp=sharing
--->
+Our trained model can be downloaded from 
+- SwinUNet3D-1 :logs\ALL_real_swin2unet3d_5207312\20211027T104444\checkpoints\epoch=34-val_loss=0.683052.ckpt
+- SwinUNet3D-2 :logs\ALL_real_swin2unet3d_4125520\20211027T171154\checkpoints\epoch=33-val_loss=0.686488.ckpt
