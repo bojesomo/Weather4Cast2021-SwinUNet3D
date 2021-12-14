@@ -53,6 +53,6 @@ python ieee_bd/main.py --gpus 1 --mode test --name ALL_real_swin2unet3d_5207312 
 
 
 ## Accessing the trained checkpoint
-Our trained model can be downloaded from https://drive.google.com/drive/folders/1O0KVMl_LCEwqRw9or-dp3U3_7r9YJF9C?usp=sharing
+Our trained model can be downloaded from https://drive.google.com/drive/folders/173WHx2rA6mu2uUV58_q-u6fCK5gn9gqD?usp=sharing
 - SwinUNet3D-1 :ALL_real_swin2unet3d_5207312\20211027T104444\checkpoints\epoch=34-val_loss=0.683052.ckpt
 - SwinUNet3D-2 :ALL_real_swin2unet3d_4125520\20211027T171154\checkpoints\epoch=33-val_loss=0.686488.ckpt
